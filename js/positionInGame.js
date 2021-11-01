@@ -1,12 +1,28 @@
 // --- positionInGame --- //
 
 function InGamePosition(settings, level) {
+    this.settings = settings;
+    this.level = level;
+    this.oject = null;
+    this.spaceship = null;
+}
+
+InGamePosition.prototype.update = function (play) {
+
+}
+
+InGamePosition.prototype.entry = function (play) {
+    this.spaceship_image = new Image();
+    this.object = new Objects();
+    this.spaceship = this.object.spaceship((play.width / 2), play.playBounderies.bottom, this.spaceship_image)
+}
+
+InGamePosition.prototype.keyDown = function (play) {
 
 }
 
 InGamePosition.prototype.draw = function (play) {
     ctx.clearRect(0, 0, play.width, play.height);
-    ctx.font = '40px Calibri';
-    ctx.fillStyle = '#D7DF01';
-    ctx.fillText('We are in the In Game Position', play.width / 2, play.height / 2);
+    ctx.drawImage(this.spaceship_image, this.spaceship.x - (this.spaceship.width / 2), this.spaceship.y - (this.spaceship.height - 2));
 }
+
